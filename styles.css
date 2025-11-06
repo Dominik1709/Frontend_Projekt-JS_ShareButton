@@ -1,0 +1,186 @@
+article{
+    font-family: 'Inter', sans-serif;
+    background-color: hsl(210, 46%, 95%);
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+.box{
+    max-width: 400px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 15px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+
+}
+.image-container img{
+    width: 100%;
+    height: auto;
+}
+.text{
+    padding: 30px;
+}
+.description h2{
+    color: hsl(217, 19%, 35%);
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+.description p{
+    font-size: 18px;
+    color: hsl(214, 17%, 51%);
+    line-height: 1.5;
+}
+
+/* Default varijanta unutar .author */
+.author__view{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 40px 0px 10px 0px;
+    height: 20px;
+    padding: 8px 12px;
+}
+.authorImg{
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+}
+.author-info p {
+  margin: 2px;
+  font-size: 14px;
+}
+.share {
+  border: 0;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: auto ;
+  margin-right: 10px;
+}
+.shareImg{
+    padding: 4px;
+    width: 24px;
+    height: 24px;
+}
+
+
+/* Share varijanta unutar .author */
+.author__share {
+  display: none; /* skriveno po defaultu */
+  align-items: center;
+  gap: 16px;
+  background: hsl(217, 19%, 35%);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 10px;
+}
+
+.author__share .share-label {
+  letter-spacing: 0.2em;
+  font-size: 12px;
+  color: hsl(210, 46%, 95%);
+}
+
+.author__share img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.author__share .share {
+  margin-left: auto; 
+}
+
+.author--share #authorView { display: none; } /* Kad je share otvoren, sakrij autor view */
+.author--share #authorShare { display: flex; } /* i pokaži share blok (override na hidden) */
+
+.attribution {
+    font-size: 16px;
+    text-align: center;
+    padding: 12px;
+}
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
+
+/* ====== POPUP (DESKTOP) – skriven po defaultu, pozicioniranje ====== */
+.author {
+  position: relative; /* sidro za apsolutno pozicioniran popover */
+}
+
+/* osnovni stil popovera */
+.share-popover {
+  position: absolute;
+  right: 0;                 /* poravnaj s desnim rubom autora (tj. gumba) */
+  bottom: 56px;             /* iznad gumba ~ visina gumba + razmak */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: hsl(217, 19%, 35%);
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.15);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 5;
+}
+
+.share-popover .share-label {
+  letter-spacing: 0.4em;
+  font-size: 12px;
+  color: hsl(210, 46%, 95%);
+}
+
+.share-popover img {
+  width: 20px; height: 20px; display: block;
+}
+
+/* mala “strelica” ispod popovera */
+.popover-arrow {
+  position: absolute;
+  bottom: -4px;
+  right: 44px;
+  width: 12px; height: 12px;
+  background: hsl(217, 19%, 35%);
+  transform: rotate(45deg);
+  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+}
+
+
+/* Responsive stilovi */
+
+@media (min-width: 800px) {
+    .box{
+        display: flex;
+        max-width: 900px;
+        height: auto;
+    }
+    .image-container {
+    flex: 0 0 40%;
+    max-width: 40%;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;         
+    object-fit: cover;
+    display: block;
+  }
+
+  /* na desktopu .author__view ostaje vidljiv čak i kad je stanje share ON */
+  .author.author--share .author__view { display: flex; }
+  .author.author--share .author__share { display: none; }
+  
+
+  /* na desktopu share stanje samo otvara popover */
+  .author.author--share .share-popover {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
