@@ -92,8 +92,8 @@ article{
   margin-left: auto; 
 }
 
-.author--share #authorView { display: none; } /* Kad je share otvoren, sakrij autor view */
-.author--share #authorShare { display: flex; } /* i pokaži share blok (override na hidden) */
+.author.author--share .author__view { display: none; }
+.author.author--share .author__share { display: flex; }
 
 .attribution {
     font-size: 16px;
